@@ -22,12 +22,6 @@ if not openai_api_key:
     logger.error("OpenAI API key is not set in environment variables.")
     exit(1)
 
-# Database connection details
-# db_user = os.getenv("DB_USER", "app_user")
-# db_password = os.getenv("DB_PASSWORD")
-# db_host = os.getenv("DB_HOST", "localhost")
-# db_name = os.getenv("DB_NAME", "employees")
-# Database connection details
 db_user = os.getenv("DB_USER", "postgres")
 db_password = os.getenv("DB_PASSWORD")
 db_host = os.getenv("DB_HOST", "localhost")
