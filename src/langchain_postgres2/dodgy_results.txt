@@ -1,0 +1,39 @@
+❯ uv run main.py
+INFO:__main__:User Question: which shipping region has had the most orders? - and for that region, which customer had the most orders?
+INFO:httpx:HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:__main__:Generated SQL Query: SELECT r.region_description, c.company_name, COUNT(o.order_id) AS total_orders
+FROM orders o
+JOIN shippers s ON o.ship_via = s.shipper_id
+JOIN region r ON s.shipper_id = r.region_id
+JOIN customers c ON o.customer_id = c.customer_id
+GROUP BY r.region_description, c.company_name
+ORDER BY total_orders DESC
+LIMIT 1;
+INFO:httpx:HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:__main__:Rephrased Answer: The shipping region that has had the most orders is the 'Eastern' region. Within that region, the customer with the most orders is 'QUICK-Stop' with a total of 11 orders.
+❯ uv run main.py
+INFO:__main__:User Question: which shipping region has had the most orders? - and for that region, which customer had the most orders?
+INFO:httpx:HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:__main__:Generated SQL Query: SELECT r.region_description, o.customer_id, COUNT(o.order_id) AS total_orders
+FROM orders o
+JOIN shippers s ON o.ship_via = s.shipper_id
+JOIN region r ON s.shipper_id = r.region_id
+GROUP BY r.region_description, o.customer_id
+ORDER BY total_orders DESC
+LIMIT 1;
+INFO:httpx:HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:__main__:Rephrased Answer: The shipping region that has had the most orders is 'Northern'. Within that region, the customer with the most orders is 'SAVEA', with a total of 11 orders.
+❯ uv run main.py
+INFO:__main__:User Question: which shipping region has had the most orders? - and for that region, which customer had the most orders?
+INFO:httpx:HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:__main__:Generated SQL Query: SELECT r.region_description, c.company_name, COUNT(o.order_id) AS total_orders
+FROM orders o
+JOIN shippers s ON o.ship_via = s.shipper_id
+JOIN region r ON s.shipper_id = r.region_id
+JOIN customers c ON o.customer_id = c.customer_id
+GROUP BY r.region_description, c.company_name
+ORDER BY total_orders DESC
+LIMIT 1;
+INFO:httpx:HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:__main__:Rephrased Answer: The shipping region that has had the most orders is the 'Eastern' region. Within that region, the customer with the most orders is 'QUICK-Stop', with a total of 11 orders.
+
