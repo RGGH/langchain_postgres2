@@ -1,0 +1,30 @@
+Querying a PostGres database directly with natural language.
+
+Let's consider the steps involved, and then we'll look at the code and finally we'll do a full demo.
+
+Here are all the key stages :
+
+    Load environment variables
+    Logging setup
+    OpenAI API key
+    Database connection details
+    Create SQLAlchemy engine and session
+    Initialize LangChain database
+    Initialize LLM and query chain
+    Generate SQL query from natural language
+    Execute SQL query
+    Prepare result in a string format for rephrasing
+    Prompt template for rephrasing
+    Main workflow
+
+We'll use "Northwind database for Postgres" and run it inside Docker, but this can be a regular PostGres database on any server, you will just need to adjust your DB_HOST address in your config.
+
+Before we look at the code in detail, a quick not about logging. You don’t strictly need the logging setup to display the output. Logging is there to help you debug and monitor your application, but it’s not required for the actual functionality of displaying results. You can leave it out if you like! It’s useful during development however.
+
+Ok, so now what imports do we need?
+We'll be using langchain openai, langchain community, and langchain.
+
+For the database connection we'll use psycopg2
+All of these can be installed with "pip" or with your package manager, for instance you could use UV.
+
+We'll also be using sqlachemy which makes life easier if we ever migrate to a different database vendor, and we'll use dot E N V to access our API key from our dot env file.
